@@ -45,44 +45,44 @@ export const HeroSection = () => {
         />
       ))}
 
+      {/* Floating Eyewear Banner Marquee — full-width, outside content container */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.15 }}
+        className="absolute top-[15%] left-0 right-0 z-10 w-full"
+        data-testid="hero-eyewear-banner"
+      >
+        <Marquee speed={35} pauseOnHover gradient gradientColor="#F2EDE4" gradientWidth={60}>
+          {BANNER_EYEWEAR.map((item, i) => (
+            <div key={i} className="mx-3 flex-shrink-0 group cursor-pointer">
+              <div className="relative w-[200px] h-[140px] md:w-[260px] md:h-[180px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500 border border-white/50 bg-white/30 backdrop-blur-sm">
+                <img
+                  src={item.src}
+                  alt={item.label}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500 tracking-wide" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  {item.label}
+                </span>
+              </div>
+            </div>
+          ))}
+        </Marquee>
+      </motion.div>
+
       {/* Content */}
-      <div className="relative z-20 text-center px-6 max-w-5xl mx-auto">
+      <div className="relative z-20 text-center px-6 max-w-5xl mx-auto mt-[220px] md:mt-[240px]">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="overline mb-8"
+          className="overline mb-6"
         >
           Since 1980 &mdash; Vidisha, Madhya Pradesh
         </motion.p>
-
-        {/* Floating Eyewear Banner Marquee */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="w-screen relative left-1/2 -translate-x-1/2 mb-10"
-          data-testid="hero-eyewear-banner"
-        >
-          <Marquee speed={35} pauseOnHover gradient gradientColor="#F5F0E8" gradientWidth={80}>
-            {BANNER_EYEWEAR.map((item, i) => (
-              <div key={i} className="mx-3 group cursor-pointer">
-                <div className="relative w-[220px] h-[160px] md:w-[280px] md:h-[200px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500 border border-white/40">
-                  <img
-                    src={item.src}
-                    alt={item.label}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500 tracking-wide" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                    {item.label}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </Marquee>
-        </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
