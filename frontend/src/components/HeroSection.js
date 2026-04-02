@@ -1,14 +1,26 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import Marquee from 'react-fast-marquee';
 
-const BOKEH_PARTICLES = Array.from({ length: 12 }, (_, i) => ({
+const BOKEH_PARTICLES = Array.from({ length: 8 }, (_, i) => ({
   id: i,
-  size: Math.random() * 60 + 20,
+  size: Math.random() * 40 + 15,
   left: Math.random() * 100,
   top: Math.random() * 100,
   duration: Math.random() * 4 + 3,
   delay: Math.random() * 3,
 }));
+
+const BANNER_EYEWEAR = [
+  { src: 'https://images.unsplash.com/photo-1730855910633-686c5818fd23?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=400', label: 'Aviator Sunglasses' },
+  { src: 'https://images.unsplash.com/photo-1591843336309-cbf414ad7978?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=400', label: 'Classic Eyeglasses' },
+  { src: 'https://images.pexels.com/photos/27353347/pexels-photo-27353347.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=300&w=500', label: 'Designer Collection' },
+  { src: 'https://images.unsplash.com/photo-1685715481110-19db0a76de2f?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=400', label: 'Sport Shield' },
+  { src: 'https://images.pexels.com/photos/25651729/pexels-photo-25651729.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=300&w=500', label: 'Minimalist Frames' },
+  { src: 'https://images.unsplash.com/photo-1686165863154-b8f9d69add82?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=400', label: 'Reading Glasses' },
+  { src: 'https://images.pexels.com/photos/5465835/pexels-photo-5465835.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=300&w=500', label: 'Retro Round' },
+  { src: 'https://images.unsplash.com/photo-1588768897961-332c50c55d18?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=400', label: 'Wayfarer Style' },
+];
 
 export const HeroSection = () => {
   return (
@@ -39,30 +51,43 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="overline mb-6"
+          className="overline mb-8"
         >
           Since 1980 &mdash; Vidisha, Madhya Pradesh
         </motion.p>
 
-        {/* 3D Floating Spectacles */}
+        {/* Floating Eyewear Banner Marquee */}
         <motion.div
-          className="relative mx-auto mb-8 light-sweep"
-          style={{ maxWidth: 500 }}
-          animate={{ y: [-15, 15] }}
-          transition={{ repeat: Infinity, repeatType: 'reverse', duration: 4, ease: 'easeInOut' }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="w-screen relative left-1/2 -translate-x-1/2 mb-10"
+          data-testid="hero-eyewear-banner"
         >
-          <img
-            src="https://static.prod-images.emergentagent.com/jobs/bf1dd7c4-4ebf-4eaa-9e24-8ae7d7881933/images/b1438c0fe12f75a3d47ac7528ac4f70c0e8ffc5ab1838e881a34455a4894d57c.png"
-            alt="Premium Spectacles"
-            className="w-full h-auto drop-shadow-2xl"
-            data-testid="hero-spectacles"
-          />
+          <Marquee speed={35} pauseOnHover gradient gradientColor="#F5F0E8" gradientWidth={80}>
+            {BANNER_EYEWEAR.map((item, i) => (
+              <div key={i} className="mx-3 group cursor-pointer">
+                <div className="relative w-[220px] h-[160px] md:w-[280px] md:h-[200px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500 border border-white/40">
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500 tracking-wide" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                    {item.label}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </Marquee>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           className="text-4xl sm:text-5xl lg:text-6xl tracking-tighter leading-[1.1] mb-6"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
@@ -74,7 +99,7 @@ export const HeroSection = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           className="text-base md:text-lg text-[#5A5A5A] max-w-2xl mx-auto mb-10 font-light"
           style={{ fontFamily: "'Outfit', sans-serif" }}
         >
