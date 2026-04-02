@@ -1,41 +1,29 @@
-import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import axios from 'axios';
 import { ArrowLeft, Filter } from 'lucide-react';
 import { FrameCard } from '../components/FrameCard';
 import { Footer } from '../components/Footer';
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { getFramesByCategory, getCategoryBySlug } from '../data/catalog';
 
 const CategoryPage = () => {
   const { slug } = useParams();
-  const [category, setCategory] = useState(null);
-  const [frames, setFrames] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const category = getCategoryBySlug(slug);
+  const frames = getFramesByCategory(slug);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const res = await axios.get(`${API}/frames/category/${slug}`);
-        setCategory(res.data.category);
-        setFrames(res.data.frames);
-      } catch (err) {
-        console.error('Failed to fetch category data:', err);
-      }
-      setLoading(false);
-    };
-    fetchData();
     window.scrollTo(0, 0);
   }, [slug]);
 
-  if (loading) {
+  if (!category) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#FBFBF9]">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-2 border-[#967C55] border-t-transparent rounded-full animate-spin" />
-          <p className="text-[#5A5A5A] text-sm" style={{ fontFamily: "'Outfit', sans-serif" }}>Loading collection...</p>
+        <div className="text-center">
+          <p className="text-[#5A5A5A] text-lg">Category not found.</p>
+          <Link to="/" className="inline-flex items-center gap-2 text-[#967C55] mt-4 hover:underline">
+            <ArrowLeft className="w-4 h-4" />
+            Back to home
+          </Link>
         </div>
       </div>
     );
@@ -48,8 +36,8 @@ const CategoryPage = () => {
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src={category?.image}
-            alt={category?.name}
+            src={category.image}
+            alt={category.name}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-[#FBFBF9]/85 backdrop-blur-sm" />
@@ -75,10 +63,10 @@ const CategoryPage = () => {
               className="text-4xl sm:text-5xl lg:text-6xl tracking-tighter leading-[1.1] mb-4"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              {category?.name}
+              {category.name}
             </h1>
             <p className="text-[#5A5A5A] text-base md:text-lg max-w-xl">
-              {category?.description}
+              {category.description}
             </p>
           </motion.div>
         </div>
