@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Award, Users, Glasses, Clock } from 'lucide-react';
 
 const stats = [
-  { icon: Clock, number: '45+', label: 'Years of Trust', desc: 'Serving Vidisha since 1980' },
+  { icon: Clock, number: '45+', label: 'Years of Trust', desc: 'Monika Opticals, Vidisha since 1980' },
   { icon: Users, number: '50K+', label: 'Happy Customers', desc: 'Families trust us with their vision' },
   { icon: Glasses, number: '200+', label: 'Frame Styles', desc: 'Curated from top global brands' },
   { icon: Award, number: '0', label: 'Error Rate', desc: 'Automatic machine precision' },

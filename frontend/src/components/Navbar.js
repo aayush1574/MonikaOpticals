@@ -28,7 +28,7 @@ export const Navbar = () => {
             className="text-xl font-bold tracking-tight"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Vidisha <span className="text-[#967C55]">Opticals</span>
+            Monika <span className="text-[#967C55]">Opticals</span>
           </span>
         </Link>
 

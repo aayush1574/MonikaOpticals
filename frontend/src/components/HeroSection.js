@@ -104,7 +104,7 @@ export const HeroSection = () => {
           style={{ fontFamily: "'Outfit', sans-serif" }}
         >
           Experience handcrafted precision with our special automatic machines.
-          Trusted by thousands in Vidisha for impeccable eyewear since 1980.
+          Trusted by thousands in Vidisha for impeccable eyewear. Monika Opticals since 1980.
         </motion.p>
 
         <motion.div

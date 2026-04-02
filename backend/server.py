@@ -106,7 +106,7 @@ async def startup():
 # Routes
 @api_router.get("/")
 async def root():
-    return {"message": "Vidisha Opticals API"}
+    return {"message": "Monika Opticals API"}
 
 @api_router.get("/categories")
 async def get_categories():

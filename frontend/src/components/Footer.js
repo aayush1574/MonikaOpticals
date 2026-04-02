@@ -1,6 +1,7 @@
-import { MapPin, Phone, Clock, Mail } from 'lucide-react';
+import { MapPin, Phone, Clock, Mail, Navigation } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '918109204075';
+const DIRECTIONS_URL = 'https://www.google.com/maps/dir/?api=1&destination=23.519101,77.815528';
 
 export const Footer = () => {
   return (
@@ -13,7 +14,7 @@ export const Footer = () => {
               className="text-2xl font-bold mb-4"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Vidisha <span className="text-[#967C55]">Opticals</span>
+              Monika <span className="text-[#967C55]">Opticals</span>
             </h3>
             <p className="text-white/50 text-sm leading-relaxed mb-6">
               Serving Vidisha with precision eyecare since 1980. Trusted by 50,000+ customers.
@@ -37,13 +38,20 @@ export const Footer = () => {
               Quick Links
             </h4>
             <ul className="space-y-3">
-              {['Sunglasses', 'Reading Glasses', 'Computer Glasses', 'Sports Eyewear', 'Kids Eyewear', 'Contact Lenses'].map((link) => (
-                <li key={link}>
+              {[
+                { label: 'Sunglasses', slug: 'sunglasses' },
+                { label: 'Reading Glasses', slug: 'reading' },
+                { label: 'Computer Glasses', slug: 'computer' },
+                { label: 'Sports Eyewear', slug: 'sports' },
+                { label: 'Kids Eyewear', slug: 'kids' },
+                { label: 'Contact Lenses', slug: 'contacts' },
+              ].map((link) => (
+                <li key={link.slug}>
                   <a
-                    href={`/category/${link.toLowerCase().replace(/\s+/g, '-').replace('glasses', '').replace('eyewear', '').replace('-', '').trim() || 'sunglasses'}`}
+                    href={`/category/${link.slug}`}
                     className="text-white/50 hover:text-[#967C55] text-sm transition-colors duration-300"
                   >
-                    {link}
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -58,7 +66,7 @@ export const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#967C55] mt-0.5 flex-shrink-0" />
-                <span className="text-white/50 text-sm">Main Market Road, Vidisha, Madhya Pradesh 464001</span>
+                <span className="text-white/50 text-sm">Civil Lines, Vidisha, Madhya Pradesh 464001</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-[#967C55] flex-shrink-0" />
@@ -70,22 +78,22 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#967C55] flex-shrink-0" />
-                <span className="text-white/50 text-sm">info@vidishaopticals.com</span>
+                <span className="text-white/50 text-sm">info@monikaopticals.com</span>
               </li>
             </ul>
           </div>
 
-          {/* Map */}
+          {/* Map + Directions */}
           <div>
             <h4 className="font-semibold text-sm uppercase tracking-wider text-[#967C55] mb-4" style={{ fontFamily: "'Outfit', sans-serif" }}>
               Find Us
             </h4>
-            <div className="map-container rounded-2xl overflow-hidden">
+            <div className="map-container rounded-2xl overflow-hidden mb-4">
               <iframe
-                title="Vidisha Opticals Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58764.37199372!2d77.77!3d23.52!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3977e0a99edffec7%3A0xaa93636e24e14499!2sVidisha%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                title="Monika Opticals Location"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1500!2d77.815528!3d23.519101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjPCsDMxJzA4LjgiTiA3N8KwNDgnNTUuOSJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                 width="100%"
-                height="180"
+                height="160"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
@@ -93,16 +101,27 @@ export const Footer = () => {
                 data-testid="google-map"
               />
             </div>
+            <a
+              href={DIRECTIONS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="get-directions-btn"
+              className="inline-flex items-center gap-2 bg-[#967C55] hover:bg-[#7A6340] text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors duration-300 w-full justify-center"
+              style={{ fontFamily: "'Outfit', sans-serif" }}
+            >
+              <Navigation className="w-4 h-4" />
+              Get Directions
+            </a>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-xs">
-            &copy; {new Date().getFullYear()} Vidisha Opticals. All rights reserved.
+            &copy; {new Date().getFullYear()} Monika Opticals, Vidisha. All rights reserved.
           </p>
           <p className="text-white/30 text-xs text-center">
-            Best Opticals in Vidisha | Premium Eyewear Store | Eye Testing in Vidisha | Spectacle Shop Near Me
+            Best Opticals in Vidisha | Monika Opticals Civil Lines | Eye Testing in Vidisha | Spectacle Shop Near Me
           </p>
         </div>
       </div>
